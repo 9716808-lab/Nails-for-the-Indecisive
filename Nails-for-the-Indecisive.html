@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- This code was provided as starter code by my teacher. -->
+<html>
+  
+<head>
+   <!--The head section contains general information about the webpage.-->
+   <title>Nails for the Indecisive</title>
+   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"> </script>
+   <style>
+       /*The style section controls how pieces of your webpage look.*/
+   </style>
+</head>
+
+
+<body>
+   <!--The body section contains the content of your webpage.-->
+   <header>
+       <h1>Nails for the Indecisive</h1>
+   </header>
+   <div x-data="webApp">
+  <!--Will not be using <p>, will use select and use the example for input vizualizer to create the checkboxes.-->
+  <!--<p x-text ="nailColor[0]"></p> this is what Mr. Rozelle put before to show how to pick text from my list-->
+  <header>
+    <h3>Nail Colors</h3>
+  </header>
+  <div id="Nail Colors">
+  <!-- Pink was behind the checkbox, the check box wasn't showing it was checked -->
+<label>
+  <input type="checkbox" x-model="colorPink" @change="updatePink()"> 
+   <span x-text="nailColor[0]"></span>
+</label>
+
+<p>Value of statusText: <span x-text="statusText"></span></p>
+
+  </div>
+
+
+
+   </div>
+  
+   <footer>
+       <p>© 2026-2027<br>
+       AP Computer Science Principles<br>
+       George Washington High School</p>
+   </footer>
+  
+   <script>
+       //The script section contains the JavaScript logic
+       document.addEventListener('alpine:init', () => {
+           Alpine.data('webApp', () => ({
+            //This list has the users options for colors
+            nailColor: ["Pink", "Blue", "Green", "Orange", "Black", "Yellow", "Tan"],
+            //This list has the polish types
+            polishType: ["Standard", "Gel", "Matte", "Sheer", "Glitter", "Effect"],
+            //This list has the nail shapes
+            nailShapes: ["Almond", "Natural", "Oval", "Flare", "Square", "Coffin", "Mountain Peek", "Stiletto"],
+            //The checkbox would not be checked so we switched where the true and false values were at
+            colorPink: false,
+
+            updatePink() {
+            if (this.colorPink) {
+            this.colorPink = true;
+            } else {
+            this.colorPink = false;
+            }
+}   
+
+
+
+
+
+
+           }));
+       });
+   </script>
+</body>
+</html>
+
