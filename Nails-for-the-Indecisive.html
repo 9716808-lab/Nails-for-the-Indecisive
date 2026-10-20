@@ -25,17 +25,143 @@
   </header>
   <div id="Nail Colors">
   <!-- Pink was behind the checkbox, the check box wasn't showing it was checked -->
+  <!-- This section controls the nail colors checkboxes-->
+  <!-- The website did not show the names of the colors-->
 <label>
   <input type="checkbox" x-model="colorPink" @change="updatePink()"> 
    <span x-text="nailColor[0]"></span>
 </label>
 
-<p>Value of statusText: <span x-text="statusText"></span></p>
+
+<label>
+  <input type="checkbox" x-model="colorBlue" @change="updateBlue()"> 
+   <span x-text="nailColor[1]"></span>
+</label>
+
+
+<label>
+  <input type="checkbox" x-model="colorGreen" @change="updateGreen()"> 
+   <span x-text="nailColor[2]"></span>
+</label>
+
+
+<label>
+  <input type="checkbox" x-model="colorOrange" @change="updateOrange()"> 
+   <span x-text="nailColor[3]"></span>
+</label>
+
+
+<label>
+  <input type="checkbox" x-model="colorBlack" @change="updateBlack()"> 
+   <span x-text="nailColor[4]"></span>
+</label>
+
+<label>
+  <input type="checkbox" x-model="colorYellow" @change="updateYellow()"> 
+   <span x-text="nailColor[5]"></span>
+</label>
+
+
+<label>
+  <input type="checkbox" x-model="colorTan" @change="updateTan()"> 
+   <span x-text="nailColor[6]"></span>
+</label>
+
+
 
   </div>
+<header>
+    <h3>Polish Type</h3>
+  </header>
+  <div id="Polish Type">
+  <!--  The names of the polish types wouldn't show up because the list name didn't match up-->
+  <label>
+  <input type="checkbox" x-model="polishStandard" @change="updateStandard()"> 
+   <span x-text="polishType[0]"></span>
+</label>
 
 
+<label>
+  <input type="checkbox" x-model="polishGel" @change="updateGel()"> 
+   <span x-text="polishType[1]"></span>
+</label>
 
+
+<label>
+  <input type="checkbox" x-model="polishMatte" @change="updateMatte()"> 
+   <span x-text="polishType[2]"></span>
+</label>
+
+
+<label>
+  <input type="checkbox" x-model="polishSheer" @change="updateSheer()"> 
+   <span x-text="polishType[3]"></span>
+</label>
+
+
+<label>
+  <input type="checkbox" x-model="polishGlitter" @change="updateGlitter()"> 
+   <span x-text="polishType[4]"></span>
+</label>
+
+<label>
+  <input type="checkbox" x-model="polishEffect" @change="updateEffect()"> 
+   <span x-text="polishType[5]"></span>
+</label>
+
+  </div>
+<header>
+    <h3>Nail Shapes</h3>
+  </header>
+  <div id="Nail Shapes">
+  <label>
+  <input type="checkbox" x-model="shapeAlmond" @change="updateAlmond()"> 
+   <span x-text="nailShapes[0]"></span>
+</label>
+
+ <label>
+  <input type="checkbox" x-model="shapeNatural" @change="updateNatural()"> 
+   <span x-text="nailShapes[1]"></span>
+</label>
+
+ <label>
+  <input type="checkbox" x-model="shapeOval" @change="updateOval()"> 
+   <span x-text="nailShapes[2]"></span>
+</label>
+
+ <label>
+  <input type="checkbox" x-model="shapeFlare" @change="updateFlare()"> 
+   <span x-text="nailShapes[3]"></span>
+</label>
+
+ <label>
+  <input type="checkbox" x-model="shapeSquare" @change="updateSquare()"> 
+   <span x-text="nailShapes[4]"></span>
+</label>
+
+ <label>
+  <input type="checkbox" x-model="shapeCoffin" @change="updateCoffin()"> 
+   <span x-text="nailShapes[5]"></span>
+</label>
+
+ <label>
+  <input type="checkbox" x-model="shapeMountainPeek" @change="updateMountainPeek()"> 
+   <span x-text="nailShapes[6]"></span>
+</label>
+
+ <label>
+  <input type="checkbox" x-model="shapeStiletto" @change="updateStiletto()"> 
+   <span x-text="nailShapes[7]"></span>
+</label>
+
+</div>
+
+<header>
+    <h3>Your Combination!</h3>
+  </header>
+  <div id="Your Combination!">
+    
+  </div>
    </div>
   
    <footer>
@@ -53,19 +179,185 @@
             //This list has the polish types
             polishType: ["Standard", "Gel", "Matte", "Sheer", "Glitter", "Effect"],
             //This list has the nail shapes
-            nailShapes: ["Almond", "Natural", "Oval", "Flare", "Square", "Coffin", "Mountain Peek", "Stiletto"],
+            nailShapes: ["Almond", "Natural", "Oval", "Flare", "Square", "Coffin", "Mountain Peak", "Stiletto"],
             //The checkbox would not be checked so we switched where the true and false values were at
             colorPink: false,
-//This checks if the color pink has been checked or not
+            colorBlue: false,
+            colorGreen: false, 
+            colorOrange: false,
+            colorBlack: false,
+            colorYellow: false,
+            colorTan: false,
+            
+            polishStandard: false,
+            polishGel: false,
+            polishMatte: false,
+            polishSheer: false,
+            polishGlitter: false,
+            polishEffect: false,
+
+            shapeStiletto: false,
+            shapeMountainPeek: false,
+            shapeCoffin: false,
+            shapeSquare: false,
+            shapeFlare: false,
+            shapeOval: false,
+            shapeNatural: false,
+            shapeAlmond: false,
+//This checks if the colors has been checked or not
+//Missing curlybrackets made it so the text wouldn't show, Mr. Rozelle helped me notice it was missing
             updatePink() {
             if (this.colorPink) {
             this.colorPink = true;
             } else {
             this.colorPink = false;
             }
-}   
+          },
+            updateBlue() {
+            if (this.colorBlue) {
+            this.colorBlue = true;
+            } else {
+            this.colorBlue = false;
+            }
+          },
+            updateGreen() {
+            if (this.colorGreen) {
+            this.colorGreen = true;
+            } else {
+            this.colorGreen = false;
+            }
+          },
+            updateOrange() {
+            if (this.colorOrange) {
+            this.colorOrange = true;
+            } else {
+            this.colorOrange = false;
+            }
+          },
+            updateTan() {
+            if (this.colorTan) {
+            this.colorTan = true;
+            } else {
+            this.colorTan = false;
+            }
+          },
+            updateBlack() {
+            if (this.colorBlack) {
+            this.colorBlack = true;
+            } else {
+            this.colorBlack = false;
+            }
+          },
+            updateYellow() {
+            if (this.colorYellow) {
+            this.colorYellow = true;
+            } else {
+            this.colorYellow = false;
+            }
+          },
+          
+          
+          updateStandard() {
+            if (this.polishStandard) {
+            this.polishStandard = true;
+            } else {
+            this.polishStandard = false;
+            }
+          },
+          updateGel() {
+            if (this.polishGel) {
+            this.polishGel = true;
+            } else {
+            this.polishGel = false;
+            }
+          },
+          updateMatte() {
+            if (this.polishMatte) {
+            this.polishMatte = true;
+            } else {
+            this.polishMatte = false;
+            }
+          },
+          updateSheer() {
+            if (this.polishSheer) {
+            this.polishSheer = true;
+            } else {
+            this.polishSheer = false;
+            }
+          },
+          updateGlitter() {
+            if (this.polishGlitter) {
+            this.polishGlitter = true;
+            } else {
+            this.polishGlitter = false;
+            }
+          },
+          updateEffect() {
+            if (this.polishEffect) {
+            this.polishEffect = true;
+            } else {
+            this.polishEffect = false;
+            }
+          },
 
-
+          
+          updateAlmond() {
+            if (this.shapeAlmond) {
+            this.shapeAlmond = true;
+            } else {
+            this.shapeAlmond = false;
+            }
+          },
+          updateNatural() {
+            if (this.shapeNatural) {
+            this.shapeNatural = true;
+            } else {
+            this.shapeNatural = false;
+            }
+          },
+          updateOval() {
+            if (this.shapeOval) {
+            this.shapeOval = true;
+            } else {
+            this.shapeOval = false;
+            }
+          },
+          updateFlare() {
+            if (this.shapeFlare) {
+            this.shapeFlare = true;
+            } else {
+            this.shapeFlare = false;
+            }
+          },
+          updateSquare() {
+            if (this.shapeSquare) {
+            this.shapeSquare = true;
+            } else {
+            this.shapeSquare = false;
+            }
+          },
+          updateCoffin() {
+            if (this.shapeCoffin) {
+            this.shapeCoffin = true;
+            } else {
+            this.shapeCoffin = false;
+            }
+          },
+          updateMountainPeek() {
+            if (this.shapeMountainPeek) {
+            this.shapeMountainPeek = true;
+            } else {
+            this.shapeMountainPeek = false;
+            }
+          },
+          updateStiletto() {
+            if (this.shapeStiletto) {
+            this.shapeStiletto = true;
+            } else {
+            this.shapeStiletto = false;
+            }
+          },
+          
 
 
 
