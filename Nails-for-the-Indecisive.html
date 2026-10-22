@@ -6,24 +6,19 @@
    <!--The head section contains general information about the webpage.-->
    <title>Nails for the Indecisive</title>
    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"> </script>
-   <style>
-       /*The style section controls how pieces of your webpage look.*/
-   </style>
 </head>
 
 
-<body>
+<body style="background-color: #FFFFE0;">
    <!--The body section contains the content of your webpage.-->
    <header>
-       <h1>Nails for the Indecisive</h1>
+       <h1 style="text-align: center; color: #FFB6C1; font-family: cursive;">Nails for the Indecisive</h1>
    </header>
    <div x-data="webApp">
   <!--Will not be using <p>, will use select and use the example for input vizualizer to create the checkboxes.-->
   <!--<p x-text ="nailColor[0]"></p> this is what Mr. Rozelle put before to show how to pick text from my list-->
-  <header>
-    <h3>Nail Colors</h3>
-  </header>
-  <div id="Nail Colors">
+  <div id="Nail Colors;" style="background-color: #FFB6C1;">
+  <h3 style="text-align: center; font-family: cursive; color: #ADD8E6;">Nail Colors</h3>
   <!-- Pink was behind the checkbox, the check box wasn't showing it was checked -->
   <!-- This section controls the nail colors checkboxes-->
   <!-- The website did not show the names of the colors-->
@@ -70,10 +65,8 @@
 
 
   </div>
-<header>
-    <h3>Polish Type</h3>
-  </header>
-  <div id="Polish Type">
+  <div id="Polish Type;" style="background-color: #FFB6C1;">
+  <h3 style="text-align: center; font-family: cursive; color: #ADD8E6;">Polish Type</h3>
   <!--  The names of the polish types wouldn't show up because the list name didn't match up-->
   <label>
   <input type="checkbox" x-model="polishStandard" @change="updateStandard()"> 
@@ -110,10 +103,8 @@
 </label>
 
   </div>
-<header>
-    <h3>Nail Shapes</h3>
-  </header>
-  <div id="Nail Shapes">
+  <div id="Nail Shapes;" style="background-color: #FFB6C1;">
+    <h3 style="text-align: center; font-family: cursive; color: #ADD8E6;">Nail Shapes</h3>
   <label>
   <input type="checkbox" x-model="shapeAlmond" @change="updateAlmond()"> 
    <span x-text="nailShapes[0]"></span>
@@ -155,12 +146,13 @@
 </label>
 
 </div>
+<!--when they were on the same line only one showed-->
+<div class="result-box;" id="Your Combination!;" style="background-color: #FFB6C1;">
+    <h3 style="text-align: center; font-family: cursive; color: #453a67;">Your Color!: <span x-text= "getSmallestNailColor"></span> </h3>
+    <h3 style="text-align: center; font-family: cursive; color: #453a67;">Your Polish!: <span x-text= "getSmallestPolishType"></span> </h3>
+    <h3 style="text-align: center; font-family: cursive; color: #453a67;">Your Shape!: <span x-text= "getSmallestNailShape"></span> </h3>
+    <!--Mr. Rozelle directed me on how to make the output and Gemini AI more clearly clarified those instructions-->
 
-<header>
-    <h3>Your Combination!</h3>
-  </header>
-  <div id="Your Combination!">
-    
   </div>
    </div>
   
@@ -180,6 +172,16 @@
             polishType: ["Standard", "Gel", "Matte", "Sheer", "Glitter", "Effect"],
             //This list has the nail shapes
             nailShapes: ["Almond", "Natural", "Oval", "Flare", "Square", "Coffin", "Mountain Peak", "Stiletto"],
+           //Mr. Rozelle gave instructions on how to create a randomized output and Gemini clarified on how to do so with examples
+            numbersForNailColors: [1, 6, 9, 3, 4, 10, 5],
+            numbersForPolishTypes: [11, 19, 17, 20, 13, 16],
+            numbersForNailShapes: [25, 22, 27, 21, 30, 23, 29, 26],
+
+            choicesForNailColors: [],
+            choicesForPolishTypes: [],
+            choicesForNailShapes: [],
+
+            
             //The checkbox would not be checked so we switched where the true and false values were at
             colorPink: false,
             colorBlue: false,
@@ -357,11 +359,103 @@
             this.shapeStiletto = false;
             }
           },
-          
+
+        //The code below looks at what the user has chosen then based on it's corresponing number it will output the lowest
+        //the choices list was empty so there was nothing to check for choices
+        //Had to make sure the varibles match it's place in the lise
+
+              getSmallestNailColor() {
+                let choicesColors = [];
+                if (this.colorPink) choicesColors.push(0);
+                if (this.colorBlue) choicesColors.push(1);
+                if (this.colorGreen) choicesColors.push(2);
+                if (this.colorOrange) choicesColors.push(3);
+                if (this.colorTan) choicesColors.push(6);
+                if (this.colorBlack) choicesColors.push(4);
+                if (this.colorYellow) choicesColors.push(5);
+
+                //putting a comma "," after the curlybracket this broke the code
 
 
+                if (choicesColors.length === 0) {
+                  return "Select a color";
+                }
+
+                const chosenColor = choicesColors.map(index => {
+                  return{
+                    colorIndex: index,
+                    numberValueOfColor:this.numbersForNailColors[index]
+                  };
+                });
+
+                const smallestColor = chosenColor.reduce((min, current) => {
+                  return current.numberValueOfColor < min.numberValueOfColor ? current : min;
+                });
+
+                return this.nailColor[smallestColor.colorIndex];
+
+              },
+
+              getSmallestPolishType(){
+                let choicesForPolish = [];
+                if (this.polishStandard) choicesForPolish.push(0);
+                if (this.polishGel) choicesForPolish.push(1);
+                if (this.polishMatte) choicesForPolish.push(2);
+                if (this.polishSheer) choicesForPolish.push(3);
+                if (this.polishGlitter) choicesForPolish.push(4);
+                if (this.polishEffect) choicesForPolish.push(5);
+
+                if (choicesForPolish.length === 0){
+                  return "Choose Your Polish Type";
+                }
+
+                const chosenPolish = choicesForPolish.map(index => {
+                  return{
+                    polishIndex: index,
+                    numberValueOfPolish: this.numbersForPolishTypes[index]
+                  };
+                });
+
+                const smallestPolish = chosenPolish.reduce((min, current) => {
+                  return current.numberValueOfPolish < min.numberValueOfPolish ? current : min;
+                });
+
+                return this.polishType[smallestPolish.polishIndex];
+
+              },
+
+              getSmallestNailShape(){
+                let choicesForShapes = [];
+                if (this.shapeAlmond) choicesForShapes.push(0);
+                if (this.shapeNatural) choicesForShapes.push(1);
+                if (this.shapeOval) choicesForShapes.push(2);
+                if (this.shapeFlare) choicesForShapes.push(3);
+                if (this.shapeSquare) choicesForShapes.push(4);
+                if (this.shapeCoffin) choicesForShapes.push(5);
+                if (this.shapeMountainPeek) choicesForShapes.push(6);
+                if (this.shapeStiletto) choicesForShapes.push(7);
 
 
+                if (choicesForShapes.length === 0){
+                  return "Choose a Nail Shape";
+                }
+
+                const chosenShape = choicesForShapes.map(index => {
+                  return{
+                    shapeIndex: index,
+                    numberValueOfShape: this.numbersForNailShapes[index]
+                  };
+                });
+
+                const smallestShape = chosenShape.reduce((min, current) => {
+                  return current.numberValueOfShape < min.numberValueOfShape ? current : min;
+                });
+
+                return this.nailShapes[smallestShape.shapeIndex];
+
+              },
+
+           
            }));
        });
    </script>
